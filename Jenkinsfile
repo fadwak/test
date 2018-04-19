@@ -6,9 +6,12 @@ pipeline {
         echo 'first Hi'
       }
     }
-    stage('email test') {
+    stage('third step') {
       steps {
-        mail(subject: 'test send mail', body: 'first email', from: 'fadwa', to: 'fadwak@gmail.com')
+        retry(count: 3) {
+          sh 'echo "hi"'
+        }
+        
       }
     }
   }
